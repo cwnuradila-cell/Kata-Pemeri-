@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+
+  h1, h2, h3, .font-fun {
+    font-family: 'Fredoka', 'Plus Jakarta Sans', cursive, sans-serif;
+  }
+
+  .font-handwriting {
+    font-family: 'Caveat', cursive, sans-serif;
+  }
+}
+
+/* Custom 3D Robot EVE effects & animations */
+@keyframes floatBob {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+@keyframes floatBobGentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(-1deg);
+  }
+}
+
+@keyframes eyeBlink {
+  0%, 45%, 55%, 100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scaleY(0.08);
+    opacity: 0.6;
+  }
+}
+
+@keyframes mouthWave {
+  0%, 100% {
+    height: 3px;
+    opacity: 0.7;
+    filter: drop-shadow(0 0 4px #06b6d4);
+  }
+  25% {
+    height: 8px;
+    opacity: 1;
+    filter: drop-shadow(0 0 8px #22d3ee);
+  }
+  50% {
+    height: 5px;
+    opacity: 0.85;
+    filter: drop-shadow(0 0 6px #06b6d4);
+  }
+  75% {
+    height: 12px;
+    opacity: 1;
+    filter: drop-shadow(0 0 10px #38bdf8);
+  }
+}
+
+@keyframes doodleFloatSlow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(3deg);
+  }
+}
+
+@keyframes doodleFloatFast {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(-4deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.4), 0 0 35px rgba(56, 189, 248, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(56, 189, 248, 0.7), 0 0 55px rgba(56, 189, 248, 0.35);
+  }
+}
+
+.animate-float-bob {
+  animation: floatBob 4s ease-in-out infinite;
+}
+
+.animate-float-gentle {
+  animation: floatBobGentle 5s ease-in-out infinite;
+}
+
+.animate-eye-blink {
+  animation: eyeBlink 4s ease-in-out infinite;
+}
+
+.animate-mouth-active {
+  animation: mouthWave 0.6s ease-in-out infinite;
+}
+
+.animate-doodle-slow {
+  animation: doodleFloatSlow 8s ease-in-out infinite;
+}
+
+.animate-doodle-fast {
+  animation: doodleFloatFast 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2.5s ease-in-out infinite;
+}
+
+/* Notebook paper pattern */
+.bg-notebook {
+  background-color: #fdfbf7;
+  background-image: 
+    radial-gradient(#e5e7eb 1.5px, transparent 1.5px),
+    linear-gradient(to right, rgba(239, 68, 68, 0.15) 1px, transparent 1px);
+  background-size: 24px 24px, 100% 100%;
+  background-position: 0 0, 48px 0;
+}
+
+/* Blackboard texture */
+.bg-chalkboard {
+  background: radial-gradient(circle at 50% 50%, #1e293b 0%, #0f172a 100%);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.4);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.7);
+}

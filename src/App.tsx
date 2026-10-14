@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { GoogleDoodleClassroom } from './components/GoogleDoodleClassroom';
 import { RobotEva } from './components/RobotEva';
 import { GrammarPracticeArena } from './components/GrammarPracticeArena';
-import { TeacherReportPortal } from './components/TeacherReportPortal';
 import { HalamanPeneranganKataPemeri } from './components/HalamanPeneranganKataPemeri';
+import { HalamanSenaraiSemakAktiviti } from './components/HalamanSenaraiSemakAktiviti';
 import { AddStudentModal } from './components/AddStudentModal';
 import { Student, TP_DESCRIPTIONS } from './types';
-import { Volume2, VolumeX, Sparkles, BookOpen, Users, Award, ShieldCheck, UserPlus, Check } from 'lucide-react';
+import { Volume2, VolumeX, Sparkles, BookOpen, ShieldCheck, UserPlus, Check, ClipboardCheck } from 'lucide-react';
 import { soundManager } from './utils/soundEffects';
 
 // Sample students for SK Tahun 1, 2, 3
@@ -120,7 +120,7 @@ export default function App() {
   });
 
   const [currentStudentId, setCurrentStudentId] = useState<string>('s1');
-  const [currentView, setCurrentView] = useState<'panduanKataPemeri' | 'studentArena' | 'teacherPortal'>('panduanKataPemeri');
+  const [currentView, setCurrentView] = useState<'panduanKataPemeri' | 'studentArena' | 'senaraiSemak'>('panduanKataPemeri');
   const [soundOn, setSoundOn] = useState<boolean>(true);
   const [showDskpGuide, setShowDskpGuide] = useState<boolean>(false);
   const [evaSkillFocus, setEvaSkillFocus] = useState<string>('kata_pemeri');
@@ -216,14 +216,14 @@ export default function App() {
         <div className="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
           {/* Logo & Branding */}
           <div className="flex items-center gap-3">
-            <div className="relative w-11 h-11 rounded-2xl bg-gradient-to-br from-blue-500 via-indigo-600 to-sky-400 p-0.5 shadow-md flex items-center justify-center">
-              <span className="text-2xl animate-bounce">🤖</span>
+            <div className="relative w-11 h-11 rounded-2xl bg-gradient-to-br from-rose-400 via-pink-500 to-amber-400 p-0.5 shadow-md flex items-center justify-center">
+              <span className="text-2xl animate-bounce">👩‍🏫</span>
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="font-fun text-xl md:text-2xl font-bold tracking-tight text-slate-900 flex items-center gap-1">
-                  <span className="text-[#4285F4]">Sahabat</span>{' '}
-                  <span className="text-[#EA4335]">AI</span>
+                <h1 className="font-fun text-xl md:text-2xl font-bold tracking-tight text-slate-900 flex items-center gap-1.5">
+                  <span className="text-[#EA4335]">Cikgu</span>
+                  <span className="text-[#4285F4]">Melati</span>
                 </h1>
                 <span className="hidden sm:inline-block px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 text-[10px] font-bold border border-amber-300">
                   Kelas Cikgu Adila
@@ -273,16 +273,16 @@ export default function App() {
               type="button"
               onClick={() => {
                 soundManager.playPop();
-                setCurrentView('teacherPortal');
+                setCurrentView('senaraiSemak');
               }}
-              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl font-fun font-bold text-xs transition cursor-pointer ${
-                currentView === 'teacherPortal'
-                  ? 'bg-blue-600 text-white shadow-sm'
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl font-fun font-bold text-xs transition cursor-pointer ${
+                currentView === 'senaraiSemak'
+                  ? 'bg-emerald-600 text-white shadow-sm'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              <Users className="w-3.5 h-3.5" />
-              Laporan Guru
+              <ClipboardCheck className="w-3.5 h-3.5 text-yellow-300" />
+              Senarai Semak & Evidens Bergambar
             </button>
           </div>
 
@@ -362,14 +362,14 @@ export default function App() {
                   Selamat Datang ke Kelas Cikgu Adila
                 </h2>
                 <p className="text-xs md:text-sm text-amber-50 mt-1 font-medium">
-                  Bilik Pembelajaran Interaktif Kata Pemeri ("ialah" & "adalah") bersama <strong className="text-white underline">Sahabat AI</strong>
+                  Bilik Pembelajaran Interaktif Kata Pemeri ("ialah" & "adalah") bersama <strong className="text-white underline">Cikgu Melati</strong>
                 </p>
               </div>
             </div>
 
             <div className="flex items-center gap-2 bg-white/20 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/30 text-xs font-bold whitespace-nowrap">
-              <span>🤖</span>
-              <span>Dibimbing oleh Sahabat AI</span>
+              <span>👩‍🏫</span>
+              <span>Dibimbing oleh Cikgu Melati</span>
             </div>
           </div>
         </div>
@@ -400,7 +400,7 @@ export default function App() {
                       Sesi Latihan: {currentStudent.name}
                     </h3>
                     <p className="text-xs text-slate-600">
-                      Kelas Cikgu Adila: <strong className="text-slate-800 bg-blue-50 px-2 py-0.5 rounded-md border border-blue-200">{currentStudent.class}</strong> • Bimbingan: <strong className="text-blue-600">Sahabat AI</strong>
+                      Kelas Cikgu Adila: <strong className="text-slate-800 bg-blue-50 px-2 py-0.5 rounded-md border border-blue-200">{currentStudent.class}</strong> • Bimbingan: <strong className="text-rose-600">Cikgu Melati</strong>
                     </p>
                   </div>
                 </div>
@@ -429,15 +429,8 @@ export default function App() {
             />
           </div>
         ) : (
-          /* Teacher Performance Report Portal */
-          <TeacherReportPortal
-            students={students}
-            currentStudent={currentStudent}
-            onSelectStudent={handleSelectStudent}
-            onOpenAddStudent={() => setIsAddStudentOpen(true)}
-            onDeleteStudent={handleDeleteStudent}
-            className={currentStudent.class || '3 Cemerlang'}
-          />
+          /* Halaman Senarai Semak Penglibatan Murid & Ruang Muat Naik Evidens Bergambar */
+          <HalamanSenaraiSemakAktiviti students={students} />
         )}
       </main>
 

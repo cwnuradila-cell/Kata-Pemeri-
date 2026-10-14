@@ -177,7 +177,7 @@ export const GrammarPracticeArena: React.FC<GrammarPracticeArenaProps> = ({
       if (currentStudent.currentTP < 4) {
         onUpdateTP(4);
       }
-      ttsManager.speak('Syabas! Semua jawapan Kata Pemeri keselamatan kamu betul! Sahabat AI sangat bangga!');
+      ttsManager.speak('Syabas! Semua jawapan Kata Pemeri keselamatan kamu betul! Cikgu Melati sangat bangga dengan usaha kamu!');
     } else {
       soundManager.playHint();
       ttsManager.speak('Bagus usahanya! Ingat: ialah untuk frasa nama, adalah untuk frasa adjektif atau sendi nama!');
@@ -298,23 +298,33 @@ export const GrammarPracticeArena: React.FC<GrammarPracticeArenaProps> = ({
 
             <button
               type="button"
-              onClick={() => onAskEvaAboutTopic('Kata Pemeri Buku Teks', 'Sahabat AI, terangkan petikan Buku Teks m/s 57 Beringat Sebelum Kena dan mengapa jawapan ialah dan adalah dipilih?')}
-              className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-xs font-bold shadow hover:shadow-md transition cursor-pointer"
+              onClick={() => onAskEvaAboutTopic('Kata Pemeri Buku Teks', 'Cikgu Melati, terangkan petikan Buku Teks m/s 57 Beringat Sebelum Kena dan mengapa jawapan ialah dan adalah dipilih?')}
+              className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-rose-500 to-amber-600 text-white text-xs font-bold shadow hover:shadow-md transition cursor-pointer"
             >
-              <span>🤖</span> Bimbingan Sahabat AI
+              <span>👩‍🏫</span> Bimbingan Cikgu Melati
             </button>
           </div>
 
-          {/* Golden Rule Formula Box */}
+          {/* Golden Rule Formula Box with 3 Phrase Pills */}
           <div className="my-5 p-4 rounded-2xl bg-amber-50 border-2 border-amber-300/80 shadow-sm flex flex-col md:flex-row items-start md:items-center gap-4">
             <div className="w-12 h-12 rounded-2xl bg-amber-400 text-amber-950 flex items-center justify-center text-2xl flex-shrink-0 shadow-sm">
               💡
             </div>
-            <div className="flex-1 text-sm text-slate-800 leading-relaxed">
-              <span className="font-bold text-amber-900 block text-base font-fun">
-                Info Bahasa (Buku Teks m/s 57):
+            <div className="flex-1 text-xs md:text-sm text-slate-800 leading-relaxed">
+              <span className="font-bold text-amber-900 block text-sm md:text-base font-fun mb-1">
+                Info Bahasa (Buku Teks m/s 57) • 3 Frasa Utama:
               </span>
-              Kata pemeri <strong className="text-blue-700 bg-blue-100 px-1.5 py-0.5 rounded">ialah</strong> hadir di hadapan <span className="underline decoration-blue-500 font-semibold">frasa nama</span>, manakala kata pemeri <strong className="text-red-700 bg-red-100 px-1.5 py-0.5 rounded">adalah</strong> hadir di hadapan <span className="underline decoration-red-500 font-semibold">frasa adjektif</span> dan <span className="underline decoration-red-500 font-semibold">frasa sendi nama</span>.
+              <div className="flex flex-wrap items-center gap-2 mt-2">
+                <span className="px-2.5 py-1 rounded-xl bg-blue-100 text-blue-900 font-bold border border-blue-300 text-xs">
+                  📘 Frasa Nama ➔ <strong className="text-blue-700">ialah</strong>
+                </span>
+                <span className="px-2.5 py-1 rounded-xl bg-purple-100 text-purple-900 font-bold border border-purple-300 text-xs">
+                  📗 Frasa Sendi Nama ➔ <strong className="text-purple-700">adalah</strong>
+                </span>
+                <span className="px-2.5 py-1 rounded-xl bg-rose-100 text-rose-900 font-bold border border-rose-300 text-xs">
+                  📙 Frasa Adjektif ➔ <strong className="text-rose-700">adalah</strong>
+                </span>
+              </div>
             </div>
           </div>
 
@@ -400,7 +410,7 @@ export const GrammarPracticeArena: React.FC<GrammarPracticeArenaProps> = ({
                 className="px-6 py-3 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-fun font-bold text-base shadow-lg hover:shadow-xl transition cursor-pointer flex items-center gap-2"
               >
                 <CheckCircle className="w-5 h-5 text-green-300" />
-                Semak Jawapan Bersama Sahabat AI
+                Semak Jawapan Bersama Cikgu Melati
               </button>
 
               <button
@@ -644,8 +654,8 @@ export const GrammarPracticeArena: React.FC<GrammarPracticeArenaProps> = ({
                 </div>
 
                 <div className="mt-4 pt-4 border-t border-slate-200 flex items-center gap-2 text-xs text-slate-500">
-                  <ShieldCheck className="w-4 h-4 text-blue-500" />
-                  <span>Petunjuk Sahabat AI: {diagnosticQuestionsKataPemeri[diagnosticCurrentIndex].hint}</span>
+                  <ShieldCheck className="w-4 h-4 text-rose-500" />
+                  <span>Petunjuk Cikgu Melati: {diagnosticQuestionsKataPemeri[diagnosticCurrentIndex].hint}</span>
                 </div>
               </div>
             </div>

@@ -31,13 +31,13 @@ export const RobotEva: React.FC<RobotEvaProps> = ({
     {
       id: 'welcome-1',
       sender: 'eva',
-      text: `Hai ${currentStudent.name}! 🌟 Saya Sahabat AI, robot pembimbing Bahasa Melayu kamu di Kelas Cikgu Adila! Hari ini mari kita kuasai Kata Pemeri ("ialah" & "adalah") bersama-sama!`,
+      text: `Hai ${currentStudent.name}! 🌸✨ Saya Cikgu Melati, pembimbing Bahasa Melayu kamu di Kelas Cikgu Adila! Hari ini mari kita kuasai Kata Pemeri ("ialah" & "adalah") bersama-sama!`,
       timestamp: 'Baru sahaja',
     },
     {
       id: 'welcome-2',
       sender: 'eva',
-      text: `Adik tahu tak perbezaan kata pemeri "ialah" dan "adalah" dalam Buku Teks m/s 57? Mari uji kefahaman kamu bersama Sahabat AI!`,
+      text: `Adik tahu tak perbezaan kata pemeri "ialah" dan "adalah" dalam Buku Teks m/s 57? Mari uji kefahaman kamu bersama Cikgu Melati!`,
       timestamp: 'Baru sahaja',
     },
   ]);
@@ -131,7 +131,7 @@ export const RobotEva: React.FC<RobotEvaProps> = ({
       const errorMsg: ChatMessage = {
         id: `eva-err-${Date.now()}`,
         sender: 'eva',
-        text: 'Maafkan Sahabat AI, sambungan sedikit terganggu. Tapi jangan bimbang, mari kita cuba lagi bersama-sama ya! 🌟',
+        text: 'Maafkan Cikgu Melati, sambungan sedikit terganggu. Tapi jangan bimbang, mari kita cuba lagi bersama-sama ya! 🌟',
         timestamp: 'Baru sahaja',
       };
       setMessages((prev) => [...prev, errorMsg]);
@@ -220,40 +220,40 @@ export const RobotEva: React.FC<RobotEvaProps> = ({
           </div>
 
           {/* Floating status badge */}
-          <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 text-[10px] font-bold text-white shadow-sm whitespace-nowrap flex items-center gap-1 border border-white">
+          <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-gradient-to-r from-rose-500 to-amber-500 text-[10px] font-bold text-white shadow-sm whitespace-nowrap flex items-center gap-1 border border-white">
             <Sparkles className="w-2.5 h-2.5 text-yellow-300 animate-spin" />
-            Sahabat AI
+            🌸 Cikgu Melati
           </div>
         </div>
 
         {/* Speech Bubble when chat is closed */}
         {!isOpen && (
-          <div className="absolute bottom-full right-0 mb-3 w-56 p-3 bg-white/95 backdrop-blur-md rounded-2xl rounded-br-sm shadow-xl border-2 border-blue-400/40 text-xs text-slate-800 animate-bounce">
-            <p className="font-bold text-blue-600 flex items-center gap-1">
-              <span>🤖</span> Sahabat AI sedia membantu!
+          <div className="absolute bottom-full right-0 mb-3 w-56 p-3 bg-white/95 backdrop-blur-md rounded-2xl rounded-br-sm shadow-xl border-2 border-rose-400/40 text-xs text-slate-800 animate-bounce">
+            <p className="font-bold text-rose-600 flex items-center gap-1">
+              <span>🌸</span> Cikgu Melati sedia membantu!
             </p>
-            <p className="mt-1 text-slate-600">Tekan saya untuk bimbingan Kata Pemeri di Kelas Cikgu Adila & semakan TP kamu!</p>
+            <p className="mt-1 text-slate-600">Tekan Cikgu Melati untuk bimbingan Kata Pemeri di Kelas Cikgu Adila & semakan TP kamu!</p>
           </div>
         )}
       </div>
 
       {/* Expanded Interactive Chat Modal / Drawer */}
       {isOpen && (
-        <div className="absolute bottom-24 right-0 w-[92vw] sm:w-[420px] max-h-[82vh] bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl border-4 border-blue-200/80 flex flex-col overflow-hidden transition-all duration-300">
+        <div className="absolute bottom-24 right-0 w-[92vw] sm:w-[420px] max-h-[82vh] bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl border-4 border-rose-200/80 flex flex-col overflow-hidden transition-all duration-300">
           {/* Header with Google Classroom colors */}
-          <div className="bg-gradient-to-r from-blue-500 via-indigo-600 to-sky-500 p-4 text-white flex items-center justify-between shadow-md">
+          <div className="bg-gradient-to-r from-rose-500 via-pink-600 to-amber-500 p-4 text-white flex items-center justify-between shadow-md">
             <div className="flex items-center gap-2.5">
               <div className="w-9 h-9 rounded-full bg-white/20 p-1 flex items-center justify-center border border-white/40">
-                <span className="text-xl">🤖</span>
+                <span className="text-xl">👩‍🏫</span>
               </div>
               <div>
                 <h3 className="font-fun text-lg font-bold flex items-center gap-1.5 leading-tight">
-                  Sahabat AI
+                  Cikgu Melati
                   <span className="text-xs px-2 py-0.5 rounded-full bg-yellow-400 text-yellow-950 font-sans font-bold">
                     Kelas Cikgu Adila
                   </span>
                 </h3>
-                <p className="text-[11px] text-blue-100 flex items-center gap-1">
+                <p className="text-[11px] text-pink-100 flex items-center gap-1">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
                   Pakar Kata Pemeri (ialah & adalah)
                 </p>
@@ -271,7 +271,7 @@ export const RobotEva: React.FC<RobotEvaProps> = ({
                 className={`p-1.5 rounded-lg text-xs font-semibold transition ${
                   voiceEnabled ? 'bg-white/25 text-white hover:bg-white/35' : 'bg-red-500/40 text-red-100'
                 }`}
-                title={voiceEnabled ? 'Suara Sahabat AI Aktif' : 'Suara Sahabat AI Dinyahaktif'}
+                title={voiceEnabled ? 'Suara Cikgu Melati Aktif' : 'Suara Cikgu Melati Dinyahaktif'}
               >
                 {voiceEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
               </button>
@@ -343,19 +343,27 @@ export const RobotEva: React.FC<RobotEvaProps> = ({
 
             {isThinking && (
               <div className="flex items-center gap-2 text-slate-500 text-xs italic p-2">
-                <span className="text-lg animate-spin">🤖</span> Sahabat AI sedang meneliti ayat kamu...
+                <span className="text-lg animate-spin">🌸</span> Cikgu Melati sedang meneliti ayat kamu...
               </div>
             )}
           </div>
 
           {/* Quick prompt suggestions */}
           <div className="px-3 py-2 bg-white border-t border-slate-100 flex items-center gap-1.5 overflow-x-auto no-scrollbar">
-            {quickPrompts.map((p, idx) => (
+            {[
+              'Cikgu Melati, apa itu Frasa Nama?',
+              'Cikgu Melati, apa itu Frasa Sendi Nama?',
+              'Cikgu Melati, apa itu Frasa Adjektif?',
+              'Apa beza ialah dan adalah?',
+              'Boleh tak kata pemeri di awal ayat?',
+              'Adakah betul: "Dia ialah sangat rajin"?',
+              'Semak ayat keselamatan saya, Cikgu!',
+            ].map((p, idx) => (
               <button
                 key={idx}
                 type="button"
                 onClick={() => handleSendMessage(p)}
-                className="whitespace-nowrap px-2.5 py-1 text-xs rounded-full bg-slate-100 hover:bg-blue-100 text-slate-700 hover:text-blue-700 border border-slate-200 transition font-medium"
+                className="whitespace-nowrap px-2.5 py-1 text-xs rounded-full bg-slate-100 hover:bg-rose-100 text-slate-700 hover:text-rose-700 border border-slate-200 transition font-medium cursor-pointer"
               >
                 {p}
               </button>

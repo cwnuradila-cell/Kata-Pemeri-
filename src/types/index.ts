@@ -64,6 +64,34 @@ export interface WeeklyReportData {
   teacherComment: string;
 }
 
+export interface ObservationCriteriaItem {
+  id: number;
+  sectionCode: 'A' | 'B' | 'C' | 'D';
+  sectionTitle: string;
+  aspekPemerhatian: string;
+}
+
+export interface ActivityPhotoEvidence {
+  id: string;
+  dataUrl: string; // base64 image data
+  title: string;
+  caption: string;
+  date: string;
+  groupName?: string;
+  studentName?: string;
+}
+
+export interface StudentObservationRecord {
+  studentId: string;
+  studentName: string;
+  groupName: string;
+  activityDate: string;
+  className: string;
+  activityName: string;
+  items: Record<number, { status: boolean; catatan: string }>;
+  catatanKeseluruhan: string;
+}
+
 export const TP_DESCRIPTIONS: Record<number, { title: string; badge: string; color: string; desc: string; criteria: string }> = {
   1: {
     title: 'Tahap 1: Sangat Terhad',

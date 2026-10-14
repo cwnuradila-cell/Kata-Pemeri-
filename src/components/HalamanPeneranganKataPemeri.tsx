@@ -14,6 +14,8 @@ export const HalamanPeneranganKataPemeri: React.FC<HalamanPeneranganKataPemeriPr
 }) => {
   const [selectedYear, setSelectedYear] = useState<1 | 2 | 3>(3);
   const [activeTabSection, setActiveTabSection] = useState<'penerangan' | 'contohTahun' | 'klinikKesalahan'>('contohTahun');
+  const [phraseFilter, setPhraseFilter] = useState<'semua' | 'fn' | 'fsn' | 'fa'>('semua');
+  const [testedPhraseIndex, setTestedPhraseIndex] = useState<number | null>(null);
   const [interactiveQuizState, setInteractiveQuizState] = useState<{ [key: string]: string }>({});
 
   const playSpeech = (text: string) => {
@@ -53,7 +55,7 @@ export const HalamanPeneranganKataPemeri: React.FC<HalamanPeneranganKataPemeriPr
               className="flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/40 text-white font-fun font-bold text-xs transition cursor-pointer"
             >
               <Volume2 className="w-4 h-4 text-amber-300" />
-              Dengar Penjelasan Sahabat AI
+              Dengar Penjelasan Cikgu Melati
             </button>
 
             <button
@@ -178,6 +180,437 @@ export const HalamanPeneranganKataPemeri: React.FC<HalamanPeneranganKataPemeriPr
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* PANDUAN KHAS: TIGA FRASA UTAMA (FRASA NAMA, FRASA SENDI NAMA & FRASA ADJEKTIF) */}
+      <div className="bg-gradient-to-br from-indigo-50 via-white to-purple-50 rounded-3xl p-6 md:p-8 shadow-xl border-4 border-indigo-200">
+        <div className="flex flex-wrap items-center justify-between gap-4 pb-5 border-b border-indigo-100">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-600 text-white font-bold text-xs mb-2 shadow-sm">
+              <BookOpen className="w-4 h-4 text-yellow-300" />
+              Glosari Asas Tatabahasa KSSR SK
+            </div>
+            <h2 className="font-fun text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight">
+              Kenali 3 Frasa Utama: <span className="text-blue-600">Frasa Nama</span>, <span className="text-purple-600">Frasa Sendi Nama</span> & <span className="text-rose-600">Frasa Adjektif</span>
+            </h2>
+            <p className="text-xs md:text-sm text-slate-600 mt-1 max-w-2xl leading-relaxed">
+              Memahami jenis frasa ialah kunci emas untuk memastikan murid-murid tidak lagi keliru memilih sama ada hendak menggunakan perkataan <strong>"ialah"</strong> atau <strong>"adalah"</strong>.
+            </p>
+          </div>
+
+          {/* Filter Pills */}
+          <div className="flex flex-wrap items-center gap-1.5 bg-white p-1.5 rounded-2xl border border-indigo-200 shadow-sm">
+            {[
+              { id: 'semua', label: 'Semua Frasa', color: 'bg-indigo-600 text-white' },
+              { id: 'fn', label: '📘 Frasa Nama', color: 'bg-blue-600 text-white' },
+              { id: 'fsn', label: '📗 Frasa Sendi', color: 'bg-purple-600 text-white' },
+              { id: 'fa', label: '📙 Frasa Adjektif', color: 'bg-rose-600 text-white' },
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => {
+                  soundManager.playPop();
+                  setPhraseFilter(tab.id as 'semua' | 'fn' | 'fsn' | 'fa');
+                }}
+                className={`px-3 py-1.5 rounded-xl text-xs font-fun font-bold transition cursor-pointer ${
+                  phraseFilter === tab.id
+                    ? tab.color + ' shadow-sm'
+                    : 'text-slate-600 hover:text-slate-900 bg-transparent'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* 3 Detailed Educational Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-6">
+          {/* KAD 1: FRASA NAMA */}
+          {(phraseFilter === 'semua' || phraseFilter === 'fn') && (
+            <div className="bg-white rounded-3xl p-5 shadow-md border-3 border-blue-400 flex flex-col justify-between relative overflow-hidden transition-all hover:shadow-lg">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-bl-full pointer-events-none"></div>
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <span className="px-3 py-1 rounded-full bg-blue-100 text-blue-900 font-fun font-bold text-xs border border-blue-200 flex items-center gap-1">
+                    <span>👤</span> Frasa Nama (FN)
+                  </span>
+                  <span className="text-[11px] font-extrabold px-2.5 py-0.5 rounded-lg bg-blue-600 text-white shadow-xs">
+                    Pasangan: IALAH
+                  </span>
+                </div>
+
+                <h3 className="font-fun text-lg font-bold text-slate-900 mb-1.5">
+                  Apa itu Frasa Nama?
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed mb-3">
+                  Frasa yang intinya terdiri daripada <strong>Kata Nama</strong> (orang, benda, tempat, haiwan, konsep, atau peralatan). Berfungsi memberikan huraian atau persamaan.
+                </p>
+
+                {/* Petua Cikgu Melati */}
+                <div className="p-3 rounded-2xl bg-blue-50/80 border border-blue-200 text-xs text-blue-950 mb-3.5 space-y-1">
+                  <div className="font-bold text-blue-900 flex items-center gap-1">
+                    <span>💡</span> Petua Pantas Cikgu Melati:
+                  </div>
+                  <p className="text-[11px] leading-relaxed text-blue-800">
+                    Boleh diletakkan penjodoh bilangan (<em>seorang, sebuah, sehelai</em>) atau perkataan kata nama umum seperti <em>alat, tempat, punca, pegawai, pakaian</em>.
+                  </p>
+                </div>
+
+                {/* Contoh Frasa */}
+                <div className="mb-3.5">
+                  <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1.5">
+                    Contoh Frasa Nama Keselamatan:
+                  </span>
+                  <div className="flex flex-wrap gap-1.5 text-xs">
+                    <span className="px-2 py-1 rounded-lg bg-slate-100 text-slate-800 font-semibold border border-slate-200">
+                      seorang anggota bomba
+                    </span>
+                    <span className="px-2 py-1 rounded-lg bg-slate-100 text-slate-800 font-semibold border border-slate-200">
+                      alat pemadam api
+                    </span>
+                    <span className="px-2 py-1 rounded-lg bg-slate-100 text-slate-800 font-semibold border border-slate-200">
+                      lintasan pejalan kaki
+                    </span>
+                    <span className="px-2 py-1 rounded-lg bg-slate-100 text-slate-800 font-semibold border border-slate-200">
+                      punca renjatan elektrik
+                    </span>
+                  </div>
+                </div>
+
+                {/* Contoh Ayat */}
+                <div className="space-y-2 text-xs">
+                  <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
+                    Contoh Ayat Berbimbingan:
+                  </span>
+                  <div className="p-2.5 rounded-xl bg-blue-50/60 border border-blue-200">
+                    1. Encik Roslan <strong className="text-blue-700">ialah</strong>{' '}
+                    <span className="bg-blue-200/70 text-blue-950 px-1 py-0.5 rounded font-semibold">pengawal lalu lintas sekolah</span>.
+                  </div>
+                  <div className="p-2.5 rounded-xl bg-blue-50/60 border border-blue-200">
+                    2. Jaket keselamatan <strong className="text-blue-700">ialah</strong>{' '}
+                    <span className="bg-blue-200/70 text-blue-950 px-1 py-0.5 rounded font-semibold">pakaian perlindungan di dalam bot</span>.
+                  </div>
+                  <div className="p-2.5 rounded-xl bg-blue-50/60 border border-blue-200">
+                    3. Punca kemalangan itu <strong className="text-blue-700">ialah</strong>{' '}
+                    <span className="bg-blue-200/70 text-blue-950 px-1 py-0.5 rounded font-semibold">bateri tiruan yang meletup</span>.
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
+                <button
+                  type="button"
+                  onClick={() =>
+                    playSpeech(
+                      'Frasa Nama terdiri daripada kata nama seperti orang, benda, alat atau tempat. Perkataan "ialah" mesti hadir di hadapan Frasa Nama. Contohnya: Encik Roslan ialah pengawal lalu lintas.'
+                    )
+                  }
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-100 hover:bg-blue-200 text-blue-900 text-xs font-bold transition cursor-pointer"
+                >
+                  <Volume2 className="w-3.5 h-3.5 text-blue-700" />
+                  Dengar Ulasan Cikgu Melati
+                </button>
+                <button
+                  type="button"
+                  onClick={() => onAskEva('Cikgu Melati, terangkan dengan lebih terperinci apa itu Frasa Nama dan beri 3 contoh ayat keselamatan!')}
+                  className="text-xs text-blue-600 hover:text-blue-800 font-bold underline cursor-pointer"
+                >
+                  Tanya Cikgu Melati
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* KAD 2: FRASA SENDI NAMA */}
+          {(phraseFilter === 'semua' || phraseFilter === 'fsn') && (
+            <div className="bg-white rounded-3xl p-5 shadow-md border-3 border-purple-400 flex flex-col justify-between relative overflow-hidden transition-all hover:shadow-lg">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-purple-50 rounded-bl-full pointer-events-none"></div>
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <span className="px-3 py-1 rounded-full bg-purple-100 text-purple-900 font-fun font-bold text-xs border border-purple-200 flex items-center gap-1">
+                    <span>🧭</span> Frasa Sendi Nama (FSN)
+                  </span>
+                  <span className="text-[11px] font-extrabold px-2.5 py-0.5 rounded-lg bg-purple-600 text-white shadow-xs">
+                    Pasangan: ADALAH
+                  </span>
+                </div>
+
+                <h3 className="font-fun text-lg font-bold text-slate-900 mb-1.5">
+                  Apa itu Frasa Sendi Nama?
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed mb-3">
+                  Frasa yang <strong>dimulakan dengan Kata Sendi Nama</strong> (seperti <em>untuk, demi, bagi, kepada, daripada</em>) dan diikuti oleh Frasa Nama sebagai pelengkap.
+                </p>
+
+                {/* Petua Opah */}
+                <div className="p-3 rounded-2xl bg-purple-50/80 border border-purple-200 text-xs text-purple-950 mb-3.5 space-y-1">
+                  <div className="font-bold text-purple-900 flex items-center gap-1">
+                    <span>💡</span> Petua Pantas Opah:
+                  </div>
+                  <p className="text-[11px] leading-relaxed text-purple-800">
+                    Lihat perkataan pertama selepas kata pemeri! Jika bermula dengan <em>untuk, demi, bagi, kepada, daripada</em>, jangan ragu-ragu, terus guna <strong>"adalah"</strong>!
+                  </p>
+                </div>
+
+                {/* Contoh Frasa */}
+                <div className="mb-3.5">
+                  <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1.5">
+                    Kata Sendi Nama Paling Lazim:
+                  </span>
+                  <div className="flex flex-wrap gap-1.5 text-xs">
+                    <span className="px-2 py-1 rounded-lg bg-purple-100 text-purple-900 font-semibold border border-purple-200">
+                      untuk (tujuan kegunaan)
+                    </span>
+                    <span className="px-2 py-1 rounded-lg bg-purple-100 text-purple-900 font-semibold border border-purple-200">
+                      demi (tujuan kebajikan)
+                    </span>
+                    <span className="px-2 py-1 rounded-lg bg-purple-100 text-purple-900 font-semibold border border-purple-200">
+                      bagi (tujuan tertentu)
+                    </span>
+                    <span className="px-2 py-1 rounded-lg bg-purple-100 text-purple-900 font-semibold border border-purple-200">
+                      kepada (sasaran)
+                    </span>
+                  </div>
+                </div>
+
+                {/* Contoh Ayat */}
+                <div className="space-y-2 text-xs">
+                  <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
+                    Contoh Ayat Berbimbingan:
+                  </span>
+                  <div className="p-2.5 rounded-xl bg-purple-50/60 border border-purple-200">
+                    1. Peti pertolongan cemas ini <strong className="text-purple-700">adalah</strong>{' '}
+                    <span className="bg-purple-200/70 text-purple-950 px-1 py-0.5 rounded font-semibold">untuk kegunaan kecemasan murid</span>.
+                  </div>
+                  <div className="p-2.5 rounded-xl bg-purple-50/60 border border-purple-200">
+                    2. Latihan kebakaran ini <strong className="text-purple-700">adalah</strong>{' '}
+                    <span className="bg-purple-200/70 text-purple-950 px-1 py-0.5 rounded font-semibold">demi keselamatan nyawa kita</span>.
+                  </div>
+                  <div className="p-2.5 rounded-xl bg-purple-50/60 border border-purple-200">
+                    3. Bantuan jaket keselamatan itu <strong className="text-purple-700">adalah</strong>{' '}
+                    <span className="bg-purple-200/70 text-purple-950 px-1 py-0.5 rounded font-semibold">kepada mangsa banjir</span>.
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
+                <button
+                  type="button"
+                  onClick={() =>
+                    playSpeech(
+                      'Frasa Sendi Nama dimulakan dengan kata sendi seperti "untuk", "demi", "bagi", dan "kepada". Wajib gunakan kata pemeri "adalah" di hadapannya! Ingat petua Opah ya!'
+                    )
+                  }
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-purple-100 hover:bg-purple-200 text-purple-900 text-xs font-bold transition cursor-pointer"
+                >
+                  <Volume2 className="w-3.5 h-3.5 text-purple-700" />
+                  Dengar Ulasan Opah
+                </button>
+                <button
+                  type="button"
+                  onClick={() => onAskEva('Opah, apakah itu Frasa Sendi Nama dan mengapa kata pemeri adalah mesti digunakan?')}
+                  className="text-xs text-purple-600 hover:text-purple-800 font-bold underline cursor-pointer"
+                >
+                  Tanya Opah
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* KAD 3: FRASA ADJEKTIF */}
+          {(phraseFilter === 'semua' || phraseFilter === 'fa') && (
+            <div className="bg-white rounded-3xl p-5 shadow-md border-3 border-rose-400 flex flex-col justify-between relative overflow-hidden transition-all hover:shadow-lg">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-rose-50 rounded-bl-full pointer-events-none"></div>
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <span className="px-3 py-1 rounded-full bg-rose-100 text-rose-900 font-fun font-bold text-xs border border-rose-200 flex items-center gap-1">
+                    <span>⚠️</span> Frasa Adjektif (FA)
+                  </span>
+                  <span className="text-[11px] font-extrabold px-2.5 py-0.5 rounded-lg bg-rose-600 text-white shadow-xs">
+                    Pasangan: ADALAH
+                  </span>
+                </div>
+
+                <h3 className="font-fun text-lg font-bold text-slate-900 mb-1.5">
+                  Apa itu Frasa Adjektif?
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed mb-3">
+                  Frasa yang intinya terdiri daripada <strong>Kata Adjektif</strong> (kata sifat, keadaan, perasaan, atau bentuk). Boleh hadir bersama Kata Penguat (<em>sangat, amat, sungguh, paling</em>).
+                </p>
+
+                {/* Petua Opah */}
+                <div className="p-3 rounded-2xl bg-rose-50/80 border border-rose-200 text-xs text-rose-950 mb-3.5 space-y-1">
+                  <div className="font-bold text-rose-900 flex items-center gap-1">
+                    <span>💡</span> Petua Pantas Opah:
+                  </div>
+                  <p className="text-[11px] leading-relaxed text-rose-800">
+                    Uji dengan meletakkan perkataan <strong>"sangat"</strong> atau <strong>"amat"</strong> di hadapan. Jika masuk akal (<em>sangat bahaya, amat licin, sungguh penting</em>), itu sah Frasa Adjektif!
+                  </p>
+                </div>
+
+                {/* Contoh Frasa */}
+                <div className="mb-3.5">
+                  <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1.5">
+                    Contoh Frasa Adjektif Keselamatan:
+                  </span>
+                  <div className="flex flex-wrap gap-1.5 text-xs">
+                    <span className="px-2 py-1 rounded-lg bg-rose-100 text-rose-900 font-semibold border border-rose-200">
+                      sangat berbahaya
+                    </span>
+                    <span className="px-2 py-1 rounded-lg bg-rose-100 text-rose-900 font-semibold border border-rose-200">
+                      amat licin
+                    </span>
+                    <span className="px-2 py-1 rounded-lg bg-rose-100 text-rose-900 font-semibold border border-rose-200">
+                      wajib dipatuhi
+                    </span>
+                    <span className="px-2 py-1 rounded-lg bg-rose-100 text-rose-900 font-semibold border border-rose-200">
+                      penting sekali
+                    </span>
+                  </div>
+                </div>
+
+                {/* Contoh Ayat */}
+                <div className="space-y-2 text-xs">
+                  <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
+                    Contoh Ayat Berbimbingan:
+                  </span>
+                  <div className="p-2.5 rounded-xl bg-rose-50/60 border border-rose-200">
+                    1. Berlari di tepi tangga sekolah <strong className="text-rose-700">adalah</strong>{' '}
+                    <span className="bg-rose-200/70 text-rose-950 px-1 py-0.5 rounded font-semibold">sangat berbahaya</span>.
+                  </div>
+                  <div className="p-2.5 rounded-xl bg-rose-50/60 border border-rose-200">
+                    2. Lantai tandas yang basah itu <strong className="text-rose-700">adalah</strong>{' '}
+                    <span className="bg-rose-200/70 text-rose-950 px-1 py-0.5 rounded font-semibold">amat licin</span>.
+                  </div>
+                  <div className="p-2.5 rounded-xl bg-rose-50/60 border border-rose-200">
+                    3. Memakai topi keledar <strong className="text-rose-700">adalah</strong>{' '}
+                    <span className="bg-rose-200/70 text-rose-950 px-1 py-0.5 rounded font-semibold">wajib untuk penunggang motosikal</span>.
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
+                <button
+                  type="button"
+                  onClick={() =>
+                    playSpeech(
+                      'Frasa Adjektif menerangkan sifat atau keadaan, seperti bahaya, licin, dan penting. Perkataan "adalah" wajib hadir di hadapan Frasa Adjektif!'
+                    )
+                  }
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-rose-100 hover:bg-rose-200 text-rose-900 text-xs font-bold transition cursor-pointer"
+                >
+                  <Volume2 className="w-3.5 h-3.5 text-rose-700" />
+                  Dengar Ulasan Opah
+                </button>
+                <button
+                  type="button"
+                  onClick={() => onAskEva('Opah, terangkan apa itu Frasa Adjektif dan beri contoh ayat keselamatan bersama perkataan adalah!')}
+                  className="text-xs text-rose-600 hover:text-rose-800 font-bold underline cursor-pointer"
+                >
+                  Tanya Opah
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* INTERACTIVE MINI CHECKER: UJI MINDA TEBAK FRASA */}
+        <div className="mt-6 p-5 rounded-2xl bg-white border-2 border-indigo-200 shadow-sm">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+            <h4 className="font-fun text-sm md:text-base font-bold text-slate-900 flex items-center gap-2">
+              <span>🎯</span>
+              <span>Uji Minda Cucu Opah: Tekan Frasa di Bawah untuk Semak Pasangan Kata Pemeri!</span>
+            </h4>
+            <span className="text-xs text-indigo-600 font-semibold">Pilih salah satu frasa di bawah:</span>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+            {[
+              {
+                text: 'seorang anggota bomba',
+                type: 'Frasa Nama (FN)',
+                pemeri: 'ialah',
+                color: 'border-blue-300 hover:bg-blue-50 text-blue-900',
+                reason: 'Kerana "anggota bomba" ialah Kata Nama (pekerjaan/manusia). Pasangannya mesti IALAH.',
+              },
+              {
+                text: 'demi keselamatan nyawa',
+                type: 'Frasa Sendi Nama (FSN)',
+                pemeri: 'adalah',
+                color: 'border-purple-300 hover:bg-purple-50 text-purple-900',
+                reason: 'Kerana dimulakan dengan kata sendi nama "demi". Pasangannya mesti ADALAH.',
+              },
+              {
+                text: 'sangat berbahaya',
+                type: 'Frasa Adjektif (FA)',
+                pemeri: 'adalah',
+                color: 'border-rose-300 hover:bg-rose-50 text-rose-900',
+                reason: 'Kerana "berbahaya" ialah Kata Adjektif sifat dan ada kata penguat "sangat". Pasangannya mesti ADALAH.',
+              },
+              {
+                text: 'alat pemadam api utama',
+                type: 'Frasa Nama (FN)',
+                pemeri: 'ialah',
+                color: 'border-blue-300 hover:bg-blue-50 text-blue-900',
+                reason: 'Kerana "alat pemadam api" ialah Kata Nama benda/peralatan. Pasangannya mesti IALAH.',
+              },
+            ].map((item, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => {
+                  soundManager.playPop();
+                  setTestedPhraseIndex(idx);
+                  playSpeech(`Frasa "${item.text}" ialah ${item.type}. Pasangan tepatnya ialah kata pemeri "${item.pemeri}"!`);
+                }}
+                className={`p-3 rounded-xl border-2 text-left text-xs font-bold transition cursor-pointer flex flex-col justify-between ${item.color} ${
+                  testedPhraseIndex === idx ? 'ring-2 ring-indigo-500 shadow-md bg-indigo-50/50' : 'bg-slate-50'
+                }`}
+              >
+                <span>"{item.text}"</span>
+                <span className="text-[10px] text-slate-500 font-medium mt-1">Tekan untuk semak ➔</span>
+              </button>
+            ))}
+          </div>
+
+          {testedPhraseIndex !== null && (
+            <div className="mt-3.5 p-3.5 rounded-xl bg-indigo-50 border border-indigo-200 flex items-start gap-3 animate-in fade-in">
+              <span className="text-2xl">👵</span>
+              <div className="text-xs text-slate-800">
+                <div className="font-bold text-indigo-950 flex items-center gap-2">
+                  <span>Keputusan:</span>
+                  <span className="px-2 py-0.5 rounded bg-white font-extrabold text-indigo-700 border border-indigo-300">
+                    {[
+                      'Frasa Nama (FN)',
+                      'Frasa Sendi Nama (FSN)',
+                      'Frasa Adjektif (FA)',
+                      'Frasa Nama (FN)',
+                    ][testedPhraseIndex]}
+                  </span>
+                  <span>➔ Kata Pemeri Wajib:</span>
+                  <span className="px-2 py-0.5 rounded bg-emerald-600 text-white font-fun font-bold">
+                    {[
+                      'ialah',
+                      'adalah',
+                      'adalah',
+                      'ialah',
+                    ][testedPhraseIndex]}
+                  </span>
+                </div>
+                <p className="mt-1 text-slate-700 leading-relaxed">
+                  {[
+                    'Kerana "anggota bomba" ialah Kata Nama (pekerjaan/manusia). Maka perkataan "ialah" wajib hadir di hadapannya!',
+                    'Kerana dimulakan dengan kata sendi nama "demi". Maka perkataan "adalah" wajib hadir di hadapannya!',
+                    'Kerana "berbahaya" ialah Kata Adjektif sifat dan ada kata penguat "sangat". Maka perkataan "adalah" wajib hadir di hadapannya!',
+                    'Kerana "alat pemadam api" ialah Kata Nama bagi peralatan perlindungan. Maka perkataan "ialah" wajib hadir di hadapannya!',
+                  ][testedPhraseIndex]}
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 

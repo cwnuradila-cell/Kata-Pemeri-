@@ -44,7 +44,7 @@ export const TeacherReportPortal: React.FC<TeacherReportPortalProps> = ({
     teacherName: 'Cikgu Adila',
     schoolName: 'Sekolah Kebangsaan Seri Melati',
     overallSummary:
-      'Prestasi murid bagi Kelas Cikgu Adila pada minggu ini menunjukkan perkembangan yang sangat memberangsangkan. Sebanyak 88% murid telah menguasai kemahiran asas 5.1.4 (Kata Pemeri: ialah dan adalah) mengikut modul Buku Teks m/s 57 "Beringat Sebelum Kena" dan tema keselamatan. Robot Sahabat AI telah berjaya merangsang murid membina ayat gramatis secara spontan.',
+      'Prestasi murid bagi Kelas Cikgu Adila pada minggu ini menunjukkan perkembangan yang sangat memberangsangkan. Sebanyak 88% murid telah menguasai kemahiran asas 5.1.4 (Kata Pemeri: ialah dan adalah) mengikut modul Buku Teks m/s 57 "Beringat Sebelum Kena" dan tema keselamatan. Bimbingan berdedikasi Cikgu Melati telah berjaya merangsang murid membina ayat gramatis secara spontan.',
     tpDistribution: {
       1: 0,
       2: 1,
@@ -61,7 +61,7 @@ export const TeacherReportPortal: React.FC<TeacherReportPortalProps> = ({
       { name: 'Danish Iskandar', tp: 2, note: 'Masih keliru meletakkan perkataan "ialah" di hadapan frasa adjektif.' },
     ],
     recommendedActivities: [
-      'Aktiviti "Detektif Kata Pemeri Keselamatan" menggunakan petikan Buku Teks m/s 57 bersama bimbingan Sahabat AI.',
+      'Aktiviti "Detektif Kata Pemeri Keselamatan" menggunakan petikan Buku Teks m/s 57 bersama bimbingan Cikgu Melati.',
       'Stesen Kad Imbasan Keselamatan Jalan Raya secara berpasangan.',
       'Permainan Roda Kata Pemeri (ialah vs adalah) untuk mengukuhkan penguasaan frasa nama dan adjektif.',
     ],
@@ -133,7 +133,7 @@ export const TeacherReportPortal: React.FC<TeacherReportPortalProps> = ({
               Laporan Prestasi Mingguan Kata Pemeri
             </h1>
             <p className="text-sm text-slate-300 mt-1">
-              Rujukan Pentaksiran Bilik Darjah (PBD) Murid • Bimbingan Pintar Sahabat AI
+              Rujukan Pentaksiran Bilik Darjah (PBD) Murid • Bimbingan Cikgu Melati
             </p>
           </div>
 
@@ -301,9 +301,9 @@ export const TeacherReportPortal: React.FC<TeacherReportPortalProps> = ({
           {/* AI Weekly Narrative Summary Card */}
           <div className="bg-gradient-to-br from-blue-50 to-indigo-50/70 p-6 rounded-3xl border-2 border-blue-200 shadow-sm">
             <div className="flex items-center gap-2 mb-3">
-              <span className="text-xl">🤖</span>
-              <h3 className="font-fun text-lg font-bold text-blue-950">
-                Rumusan Analisis Mingguan oleh Sahabat AI ({weeklyReport.weekNumber})
+              <span className="text-xl">👩‍🏫</span>
+              <h3 className="font-fun text-lg font-bold text-rose-950">
+                Rumusan Analisis Mingguan oleh Cikgu Melati ({weeklyReport.weekNumber})
               </h3>
             </div>
 
